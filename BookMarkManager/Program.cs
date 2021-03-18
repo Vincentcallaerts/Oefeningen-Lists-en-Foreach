@@ -54,7 +54,17 @@ namespace BookMarkManager
                         break;
                     case 1:
 
-                        index = SelectMenu(topFive,"Welke :Gebruiker wil je aanpassen");
+                        index = SelectMenu(topFive,"Welke Bookmark wil je aanpassen");
+                        Console.Write("Geef de naam van de bookmark in: ");
+                        string naam = Console.ReadLine();
+                        Console.WriteLine();
+
+                        Console.Write("Geef de url van de bookmark in: ");
+                        string url = Console.ReadLine();
+                        Console.WriteLine();
+
+                        topFive = AanpassenBookmark(topFive, index,naam,url);
+
                         break;
 
                     case 2:
@@ -104,12 +114,21 @@ namespace BookMarkManager
                             Console.ForegroundColor = selectionForeground;
                             Console.BackgroundColor = selectionBackground;
                         }
-                        string msg = $"{i + 1}. {topFive[i].Naam}";
-                        Console.SetCursorPosition((Console.WindowWidth - msg.Length) / 2, Console.CursorTop);
-                        Console.WriteLine(msg);
-                        Console.ResetColor();
-                    }
-                              
+                        if (topFive[i] == null)
+                        {
+                            string altmsg = $"{i + 1}. Leeg";
+                            Console.SetCursorPosition((Console.WindowWidth - altmsg.Length) / 2, Console.CursorTop);
+                            Console.WriteLine(altmsg);
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            string msg = $"{i + 1}. {topFive[i].Naam}";
+                            Console.SetCursorPosition((Console.WindowWidth - msg.Length) / 2, Console.CursorTop);
+                            Console.WriteLine(msg);
+                            Console.ResetColor();
+                        }                      
+                    }                              
                 }
 
                 switch (Console.ReadKey(true).Key)
@@ -228,8 +247,7 @@ namespace BookMarkManager
                 }
                 else
                 {
-                    temp[i].Naam = naam;
-                    temp[i].Url = url;
+                    temp[i] = new Bookmark(naam,url);
 
                 }
             }
