@@ -215,7 +215,6 @@ namespace BookMarkManager
                    
                 }                
             }
-            Console.WriteLine();
             for (int i = 0; i < temp.Length; i++)
             {
 
@@ -251,7 +250,6 @@ namespace BookMarkManager
 
                 }
             }
-            Console.WriteLine();
                 
             return temp;
         }
